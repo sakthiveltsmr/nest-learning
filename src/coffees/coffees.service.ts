@@ -16,7 +16,11 @@ export class CoffeesService {
     }
 
     async findOne(id:any){
+        const b: number = id
+        console.log(id)
         const res= await this.coffeeRepository.findOne(id);
+        console.log('id', res)
+
         if(!res){
             throw new HttpException(`Coffe #${id} not found`,HttpStatus.NOT_FOUND)
         }
@@ -31,7 +35,7 @@ export class CoffeesService {
 
      async update(id:number,updatecoffe:UpdateCoffeeDto){
         const coffee= await this.coffeeRepository.preload({
-            id:+id,
+            id,
             ...updatecoffe
         })
         if(!coffee){

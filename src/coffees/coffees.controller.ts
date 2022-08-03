@@ -13,8 +13,9 @@ export class CoffeesController {
         return this.coffeesservie.findAll()
     }
     @Get(':id')
-    findone(@Param('id') id:number){
-        return this.coffeesservie.findOne(id)
+    async findone(@Param('id') id:string){
+        const a= await this.coffeesservie.findOne(id)
+        console.log(a)
     }
     @Post()
     create(@Body() createCoffeDto:CreateCoffeeDto){
