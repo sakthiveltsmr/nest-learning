@@ -1,29 +1,30 @@
 import { Body, Controller,Delete,Get, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { CoffeesService } from './coffees.service';
 
 
 @Controller('coffees')
 export class CoffeesController {
+    constructor(private readonly coffeesservie:CoffeesService){}
 
     @Get()
-    findAll(@Res() response,@Query() paginationQuery){
-        const{limit,offset}=paginationQuery
-        response.status(200).send(`get method access successfull limit of ${limit} and ${offset}`)
+    findAll(){
+        return this.coffeesservie.findAll()
     }
     @Get(':id')
     findone(@Param('id') id:number){
-        return `This action returns ${id} in signle value`
+        return this.coffeesservie.findOne(id)
     }
     @Post()
     create(@Body() body){
-        return body
+        return this.coffeesservie.create(body)
     }
     @Patch(':id')
     update(@Param('id') id:number,@Body() body){
-        return `patch updated ${id} is success`
+        return this.coffeesservie.update(id,body)
     }
     @Delete(':id')
-    delete(@Param('id') id:number,@Res() response){
-        response.status(200).send(`data will be deleted on ${id}`)
+    delete(@Param('id') id:number){
+       return this.coffeesservie.remove(id)
     }
 }
  
