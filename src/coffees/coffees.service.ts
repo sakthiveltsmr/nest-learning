@@ -20,8 +20,10 @@ export class CoffeesService {
         return res
     }
 
-    create(createdata:Coffee){
-        return this.coffee.push(createdata)
+    create(createdata){
+        this.coffee.push(createdata)
+        
+        return "data added successfully"
        
     }
 
