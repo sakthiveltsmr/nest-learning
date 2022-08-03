@@ -23,14 +23,14 @@ export class CoffeesService {
     create(createdata){
         this.coffee.push(createdata)
         
-        return "data added successfully"
+        return createdata
        
     }
 
     update(id:number,updatecoffe:any){
         const existingCoffee=this.findOne(id)
         if(existingCoffee){
-        return this.coffee.push(updatecoffe)
+       
         }
     }
 
