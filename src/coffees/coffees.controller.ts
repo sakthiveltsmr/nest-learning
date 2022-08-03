@@ -1,12 +1,13 @@
-import { Body, Controller,Delete,Get, Param, Patch, Post, Res } from '@nestjs/common';
+import { Body, Controller,Delete,Get, Param, Patch, Post, Query, Res } from '@nestjs/common';
 
 
 @Controller('coffees')
 export class CoffeesController {
 
     @Get()
-    findAll(@Res() response){
-        response.status(200).send("get method success")
+    findAll(@Res() response,@Query() paginationQuery){
+        const{limit,offset}=paginationQuery
+        response.status(200).send(`get method access successfull limit of ${limit} and ${offset}`)
     }
     @Get(':id')
     findone(@Param('id') id:number){
